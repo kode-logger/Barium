@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Barium">
         <activity
+            android:name=".activities.SignOutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SignInActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
