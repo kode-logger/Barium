@@ -20,15 +20,6 @@
             android:layout_height="@dimen/_140sdp"
             app:srcCompat="@drawable/bariumtxtlogo" />
 
-        <!--        <TextView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="@dimen/_4sdp"-->
-        <!--            android:text="Hey There"-->
-        <!--            android:textColor="@color/primary_text"-->
-        <!--            android:textSize="@dimen/_18ssp"-->
-        <!--            android:textStyle="bold"/>-->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
