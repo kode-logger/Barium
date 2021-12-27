@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Barium">
         <activity
-            android:name=".activities.SignOutActivity"
+            android:name=".activities.SignUpActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
