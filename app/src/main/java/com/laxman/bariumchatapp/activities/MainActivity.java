@@ -1,8 +1,10 @@
-package com.kodelogger.barium;
+package com.laxman.bariumchatapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.laxman.bariumchatapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

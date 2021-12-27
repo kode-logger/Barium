@@ -1,4 +1,4 @@
-package com.kodelogger.barium;
+package com.laxman.bariumchatapp;
 
 import org.junit.Test;
 
