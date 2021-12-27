@@ -1,16 +1,30 @@
 package com.kodelogger.barium.activities;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.kodelogger.barium.databinding.ActivitySignUpBinding;
 
-import com.kodelogger.barium.R;
+public class SignUpActivity extends AppCompatActivity {
 
-public class SignOutActivity extends AppCompatActivity {
+    private ActivitySignUpBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_out);
+        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        setListeners();
+    }
+
+    private void setListeners() {
+        binding.textSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }
