@@ -1,4 +1,4 @@
-package com.kodelogger.barium.activities;
+package com.kodelogger.barium.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

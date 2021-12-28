@@ -12,17 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Barium">
         <activity
-            android:name=".activities.ChatActivity"
+            android:name=".activity.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.UserActivity"
+            android:name=".activity.UserActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SignUpActivity"
+            android:name=".activity.SignUpActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activities.SignInActivity"
+            android:name=".activity.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
 
         <service

@@ -1,4 +1,4 @@
-package com.kodelogger.barium.utils;
+package com.kodelogger.barium.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

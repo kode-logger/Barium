@@ -1,4 +1,4 @@
-package com.kodelogger.barium.activities;
+package com.kodelogger.barium.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,8 +14,8 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.kodelogger.barium.databinding.ActivityMainBinding;
-import com.kodelogger.barium.utils.Constants;
-import com.kodelogger.barium.utils.PreferenceManager;
+import com.kodelogger.barium.util.Constants;
+import com.kodelogger.barium.util.PreferenceManager;
 
 import java.util.HashMap;
 

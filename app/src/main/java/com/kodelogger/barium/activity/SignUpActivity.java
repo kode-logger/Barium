@@ -1,4 +1,4 @@
-package com.kodelogger.barium.activities;
+package com.kodelogger.barium.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,8 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kodelogger.barium.databinding.ActivitySignUpBinding;
-import com.kodelogger.barium.utils.Constants;
-import com.kodelogger.barium.utils.PreferenceManager;
+import com.kodelogger.barium.util.Constants;
+import com.kodelogger.barium.util.PreferenceManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;

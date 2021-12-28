@@ -1,4 +1,4 @@
-package com.kodelogger.barium.activities;
+package com.kodelogger.barium.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +10,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.kodelogger.barium.adapter.UsersAdapter;
 import com.kodelogger.barium.databinding.ActivityUserBinding;
 import com.kodelogger.barium.model.User;
-import com.kodelogger.barium.utils.Constants;
-import com.kodelogger.barium.utils.PreferenceManager;
+import com.kodelogger.barium.util.Constants;
+import com.kodelogger.barium.util.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
