@@ -60,8 +60,7 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             android:indeterminateTint="@color/primary"
-            android:indeterminateTintMode="src_atop"
-            />
+            android:indeterminateTintMode="src_atop" />
 
         <TextView
             android:id="@+id/textErrorMessage"
