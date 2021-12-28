@@ -1,5 +1,6 @@
 package com.kodelogger.barium.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.kodelogger.barium.adapter.UsersAdapter;
 import com.kodelogger.barium.databinding.ActivityUserBinding;
+import com.kodelogger.barium.listener.UserListener;
 import com.kodelogger.barium.model.User;
 import com.kodelogger.barium.util.Constants;
 import com.kodelogger.barium.util.PreferenceManager;
@@ -16,7 +18,7 @@ import com.kodelogger.barium.util.PreferenceManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity implements UserListener {
 
     private ActivityUserBinding binding;
     private PreferenceManager preferenceManager;
@@ -56,7 +58,7 @@ public class UserActivity extends AppCompatActivity {
                         }
 
                         if (users.size() > 0) {
-                            UsersAdapter usersAdapter = new UsersAdapter(users);
+                            UsersAdapter usersAdapter = new UsersAdapter(users, this);
                             binding.usersRecyclerView.setAdapter(usersAdapter);
                             binding.usersRecyclerView.setVisibility(View.VISIBLE);
                         } else showErrorMessage();
@@ -72,5 +74,13 @@ public class UserActivity extends AppCompatActivity {
     private void loading(Boolean isLoading) {
         if (isLoading) binding.progressBar.setVisibility(View.VISIBLE);
         else binding.progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onUserClicked(User user) {
+        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER, user);
+        startActivity(intent);
+        finish();
     }
 }
