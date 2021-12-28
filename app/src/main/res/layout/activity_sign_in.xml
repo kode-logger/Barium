@@ -80,6 +80,9 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/primary"
+                android:indeterminateTintMode="src_atop"
                 android:visibility="invisible" />
 
 
