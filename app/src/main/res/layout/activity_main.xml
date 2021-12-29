@@ -41,6 +41,7 @@
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:ellipsize="end"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
         android:maxLines="1"
         android:textColor="@color/white"
