@@ -76,19 +76,6 @@
         android:background="@color/primary"
         app:layout_constraintTop_toBottomOf="@id/backImage" />
 
-    <TextView
-        android:id="@+id/textAvailability"
-        android:text="Online"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/statusOnline"
-        android:padding="@dimen/_2sdp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_10ssp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
@@ -101,7 +88,7 @@
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/viewBackground"
-        app:layout_constraintTop_toBottomOf="@id/textAvailability"
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter"
         app:stackFromEnd="true" />
 
     <ProgressBar
@@ -161,4 +148,16 @@
         app:layout_constraintEnd_toStartOf="@id/layoutSend"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/textAvailability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/statusOnline"
+        android:gravity="center"
+        android:padding="@dimen/_2sdp"
+        android:text="Online"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
 </androidx.constraintlayout.widget.ConstraintLayout>

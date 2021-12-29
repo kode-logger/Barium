@@ -1,6 +1,9 @@
 package com.kodelogger.barium.util;
 
+import java.util.HashMap;
+
 public class Constants {
+
     public static final String KEY_COLLECTION_USERS = "users";
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
@@ -23,4 +26,24 @@ public class Constants {
     public static final String KEY_RECEIVER_IMAGE = "receiverImage";
     public static final String KEY_LAST_MESSAGE = "lastMessage";
     public static final String KEY_AVAILABILITY = "availability";
+    public static final String REMOTE_MSG_AUTHORIZATION = "Authorization";
+    public static final String REMOTE_MSG_CONTENT_TYPE = "Content-Type";
+    public static final String REMOTE_MSG_DATA = "data";
+    public static final String REMOTE_MSG_REGISTRATION_IDS = "registration_ids";
+
+
+    private static final String cloudMessagingKey = "AAAAE1BmM0w:APA91bHEquxkIEaLOKaZ9WJf__QcXzU78KizdKFdyCD0mk8-69jUNYLQLQL8KYkLS8N_aPMNgjku41CLLCBcsxvlQNwRg8nbEKofXQbiXZwgPTV6tpcYdSkR7_H8YGdkTS-BhJuiCOSX";
+    private static final String contentType = "application/json";
+
+    public static HashMap<String, String> remoteMsgHeaders = null;
+
+    public static HashMap<String, String> getRemoteMsgHeaders() {
+        if (remoteMsgHeaders == null) {
+            remoteMsgHeaders = new HashMap<>();
+            remoteMsgHeaders.put(REMOTE_MSG_AUTHORIZATION, "key=" + cloudMessagingKey);
+            remoteMsgHeaders.put(REMOTE_MSG_CONTENT_TYPE, contentType);
+        }
+        return remoteMsgHeaders;
+    }
+
 }

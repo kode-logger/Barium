@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentChange;
@@ -17,8 +18,14 @@ import com.kodelogger.barium.adapter.ChatAdapter;
 import com.kodelogger.barium.databinding.ActivityChatBinding;
 import com.kodelogger.barium.model.ChatMessage;
 import com.kodelogger.barium.model.User;
+import com.kodelogger.barium.network.APIClient;
+import com.kodelogger.barium.network.APIService;
 import com.kodelogger.barium.util.Constants;
 import com.kodelogger.barium.util.PreferenceManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,6 +35,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatActivity extends BaseActivity {
 
@@ -105,12 +116,50 @@ public class ChatActivity extends BaseActivity {
     private void listenAvailabilityofReceiver() {
         database.collection(Constants.KEY_COLLECTION_USERS).document(receiverUser.id).addSnapshotListener(ChatActivity.this, (value, error) -> {
             if (error != null) return;
-            if (value != null)
+            if (value != null) {
                 if (value.getLong(Constants.KEY_AVAILABILITY) != null)
                     isReceiverAvailable = Objects.requireNonNull(value.getLong(Constants.KEY_AVAILABILITY)).intValue() == 1;
-            if (isReceiverAvailable) binding.textAvailability.setVisibility(View.VISIBLE);
-            else binding.textAvailability.setVisibility(View.GONE);
+                receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
+                if (receiverUser.image == null) {
+                    receiverUser.image = value.getString(Constants.KEY_IMAGE);
+                    chatAdapter.setReceiverProfileImage(getBitmapFromEncodedString(receiverUser.image));
+                    chatAdapter.notifyItemRangeInserted(0, chatMessages.size());
+                }
+            }
+            binding.textAvailability.setVisibility(isReceiverAvailable ? View.VISIBLE : View.GONE);
         });
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void sendNotification(String messageBody) {
+        APIClient.getClient().create(APIService.class).sendMessage(Constants.getRemoteMsgHeaders(), messageBody)
+                .enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if (response.isSuccessful()) {
+                            try {
+                                if (response.body() != null) {
+                                    JSONObject responseJson = new JSONObject(response.body());
+                                    JSONArray results = responseJson.getJSONArray("results");
+                                    if (responseJson.getInt("failure") == 1) {
+                                        JSONObject error = (JSONObject) results.get(0);
+                                        showToast(error.getString("error"));
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else showToast("Error: " + response.code());
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        showToast(t.getMessage());
+                    }
+                });
     }
 
     private void sendMessage() {
@@ -136,12 +185,35 @@ public class ChatActivity extends BaseActivity {
             conversation.put(Constants.KEY_TIMESTAMP, new Date());
             addConversation(conversation);
         }
+        if (!isReceiverAvailable) {
+            try {
+                JSONArray tokens = new JSONArray();
+                tokens.put(receiverUser.token);
+
+                JSONObject data = new JSONObject();
+                data.put(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+                data.put(Constants.KEY_NAME, preferenceManager.getString(Constants.KEY_NAME));
+                data.put(Constants.KEY_FCM_TOKEN, preferenceManager.getString(Constants.KEY_FCM_TOKEN));
+                data.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+
+                JSONObject body = new JSONObject();
+                body.put(Constants.REMOTE_MSG_DATA, data);
+                body.put(Constants.REMOTE_MSG_REGISTRATION_IDS, tokens);
+
+                sendNotification(body.toString());
+
+            } catch (Exception exception) {
+                showToast(exception.getMessage());
+            }
+        }
         binding.inputMessage.setText(null);
     }
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {
-        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        if (encodedImage != null) {
+            byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        } else return null;
     }
 
     private void loadReceiverDetails() {
