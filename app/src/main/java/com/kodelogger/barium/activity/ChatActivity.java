@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,8 +27,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends BaseActivity {
 
     private ActivityChatBinding binding;
     private User receiverUser;
@@ -43,6 +42,7 @@ public class ChatActivity extends AppCompatActivity {
             conversationId = documentSnapshot.getId();
         }
     };
+    private Boolean isReceiverAvailable = false;
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
@@ -100,6 +100,17 @@ public class ChatActivity extends AppCompatActivity {
                 .whereEqualTo(Constants.KEY_RECEIVER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
                 .whereEqualTo(Constants.KEY_SENDER_ID, receiverUser.id)
                 .addSnapshotListener(eventListener);
+    }
+
+    private void listenAvailabilityofReceiver() {
+        database.collection(Constants.KEY_COLLECTION_USERS).document(receiverUser.id).addSnapshotListener(ChatActivity.this, (value, error) -> {
+            if (error != null) return;
+            if (value != null)
+                if (value.getLong(Constants.KEY_AVAILABILITY) != null)
+                    isReceiverAvailable = Objects.requireNonNull(value.getLong(Constants.KEY_AVAILABILITY)).intValue() == 1;
+            if (isReceiverAvailable) binding.textAvailability.setVisibility(View.VISIBLE);
+            else binding.textAvailability.setVisibility(View.GONE);
+        });
     }
 
     private void sendMessage() {
@@ -171,5 +182,11 @@ public class ChatActivity extends AppCompatActivity {
                 .whereEqualTo(Constants.KEY_RECEIVER_ID, receiverId)
                 .get()
                 .addOnCompleteListener(conversationOnCompleteListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listenAvailabilityofReceiver();
     }
 }

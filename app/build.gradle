@@ -42,17 +42,21 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    // Scalable Size Unit Packages
+    // Scalable Size Unit Packages -> scales the units to support on multiple devices
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
-    // Rounded ImageView Package
+    // Rounded ImageView Package -> easy to create RoundImage Views
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
-    // Firebase Packages
+    // Firebase Packages -> Firebase core Packages
     implementation 'com.google.firebase:firebase-messaging:23.0.0'
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
 
-    // MultiDex
+    // MultiDex -> to allow Multiple DEX file generation
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    // RetroFit -> type-safe REST client
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
 }

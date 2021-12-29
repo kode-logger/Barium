@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.kodelogger.barium.adapter.UsersAdapter;
@@ -18,7 +16,7 @@ import com.kodelogger.barium.util.PreferenceManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserActivity extends AppCompatActivity implements UserListener {
+public class UserActivity extends BaseActivity implements UserListener {
 
     private ActivityUserBinding binding;
     private PreferenceManager preferenceManager;
