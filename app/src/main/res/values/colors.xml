@@ -8,7 +8,7 @@
     <color name="input_background">#ECECEC</color>
     <color name="icon_background">#20FFFFFF</color>
     <color name="error">#B00020</color>
-    <color name="received_message_background">#090D16</color>
+    <color name="received_message_background">#003682</color>
     <color name="status_bar">#162780</color>
-    <color name="statusOnline">#008000</color>
+    <color name="statusOnline">#54E346</color>
 </resources>

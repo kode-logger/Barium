@@ -153,11 +153,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/statusOnline"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
         android:padding="@dimen/_2sdp"
         android:text="Online"
         android:textColor="@color/white"
-        android:textSize="@dimen/_10ssp"
-        android:visibility="gone"
+        android:textSize="@dimen/_12ssp"
+        android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
 </androidx.constraintlayout.widget.ConstraintLayout>
