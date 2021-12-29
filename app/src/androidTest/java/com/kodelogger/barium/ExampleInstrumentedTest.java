@@ -1,4 +1,4 @@
-package com.laxman.bariumchatapp;
+package com.kodelogger.barium;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.laxman.bariumchatapp", appContext.getPackageName());
+        assertEquals("com.kodelogger.barium", appContext.getPackageName());
     }
 }
