@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "477864013098",
-    "project_id": "barium-chat-app",
-    "storage_bucket": "barium-chat-app.appspot.com"
+    "project_number": "82953253708",
+    "project_id": "barium-chat",
+    "storage_bucket": "barium-chat.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:477864013098:android:4efb5acaa8a913f9648253",
+        "mobilesdk_app_id": "1:82953253708:android:360d12afe2408fab3155e9",
         "android_client_info": {
-          "package_name": "com.laxman.bariumchatapp"
+          "package_name": "com.kodelogger.barium"
         }
       },
       "oauth_client": [
         {
-          "client_id": "477864013098-6o9ebnuil6f03l6qj32u59ocdlflef1j.apps.googleusercontent.com",
+          "client_id": "82953253708-q27lqgg0uv3h1r0mlkut9ugl4e3srp0e.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD-AsxxdXclnwxK2oxsuNO4tB2l3bpwydY"
+          "current_key": "AIzaSyA2QDigT2oUP3bsQYsSmdNInfNDTQNJr0c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "477864013098-6o9ebnuil6f03l6qj32u59ocdlflef1j.apps.googleusercontent.com",
+              "client_id": "82953253708-q27lqgg0uv3h1r0mlkut9ugl4e3srp0e.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
